@@ -1,0 +1,42 @@
+
+DEBUG = True
+
+DATABASES = {
+    "default": {
+        # Ends with "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
+        "ENGINE": "django.db.backends.sqlite3",
+        # DB name or path to database file if using sqlite3.
+        "NAME": "dev.db",
+        # Not used with sqlite3.
+        "USER": "",
+        # Not used with sqlite3.
+        "PASSWORD": "",
+        # Set to empty string for localhost. Not used with sqlite3.
+        "HOST": "",
+        # Set to empty string for default. Not used with sqlite3.
+        "PORT": "",
+    }
+}
+
+###################
+# DEPLOY SETTINGS #
+###################
+
+# These settings are used by the default fabfile.py provided.
+# Check fabfile.py for defaults.
+
+FABRIC = {
+     "SSH_USER": "mel", # SSH username
+     "SSH_PASS":  "", # SSH password (consider key-based authentication)
+     "SSH_KEY_PATH":  "/home/mel/.ssh/ssh_key.pem", # Local path to SSH key file, for key-based auth
+     "HOSTS": ['184.82.250.166',], # List of hosts to deploy too
+     "VIRTUALENV_HOME":  "/srv", # Absolute remote path for virtualenvs
+     "PROJECT_NAME": "postfoliosite", # Unique identifier for project
+     "REQUIREMENTS_PATH": "requirements/project.txt", # Path to pip requirements, relative to project
+     "GUNICORN_PORT": 8000, # Port gunicorn will listen on
+     "LOCALE": "en_US.UTF-8", # Should end with ".UTF-8"
+     "LIVE_HOSTNAME": "doorinthewall.co.za", # Host for public site.
+     "REPO_URL": "", # Git or Mercurial remote repo URL for the project
+     "DB_PASS": "XjuzBqJxmNmwhqd", # Live database password
+     "ADMIN_PASS": "DoOngnFmKj7Nqe3", # Live admin user password
+}
