@@ -2,6 +2,7 @@ from django import template
 import urllib
 import urllib2
 import json
+import datetime
 
 import logging
 logger = logging.getLogger("latitudetag")
@@ -42,30 +43,42 @@ def get_latitude_json(parser, token):
     json_str = do_latitude_public_badge_request(userkey)
     return LatitudeNode(json_str)
 
-@register.tag(name="latitude_coords")
-def get_latitude_coords(parser, token):
+@register.tag(name="get_latitude_data")
+def get_latitude_data(parser, token):
     userkey = get_params(token)
     json_str = do_latitude_public_badge_request(userkey)
-    
-    render_str = ""
-    
+        
     #check if we actually got something back from the request
-    if json_str != "":
-        features_str = json.loads(json_str)
+    if json_str == "":
+        return LatitudeNode("")
     
-        #check if the response contains a feature
-        if ("features" in features_str and len(features_str["features"])>0):
-            my_loc = features_str["features"][0]
-            coords = my_loc["geometry"]["coordinates"]
-            render_str = "%s,%s" % (coords[1],coords[0]) 
-                    
-    return LatitudeNode(render_str)
+    features_str = json.loads(json_str)
+    #check if the response contains a feature
+    if ("features" not in features_str or len(features_str["features"])==0):
+        return LatitudeNode("")
+    
+    my_loc = features_str["features"][0]
+    print my_loc
+    coords = my_loc["geometry"]["coordinates"]
+    #weirdly, this is [lon, lat] - switch to lat,lon because this is what the static maps API uses
+    coords_lat = coords[1]
+    coords_lon = coords[0]
+    
+    loc_name = my_loc["properties"]["reverseGeocode"]
+    
+    timestamp = my_loc["properties"]["timeStamp"]
+    lastseen_dt = datetime.datetime.fromtimestamp(timestamp)   
+                        
+    return LatitudeNode("latitude_data",{"coords_lat":coords_lat, "coords_lon":coords_lon,"loc_name":loc_name,"timestamp":timestamp,"lastseen": lastseen_dt})
 
 
 
 class LatitudeNode(template.Node):
-    def __init__(self, userkey):
-        self.userkey = userkey
+    def __init__(self, varname, result):
+        self.varname = varname
+        self.result = result
     def render(self, context):
         #maps visual_refresh
-        return self.userkey
+        context[self.varname] = self.result
+
+        return ''

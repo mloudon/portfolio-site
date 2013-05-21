@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
-{% load pages_tags mezzanine_tags latitude_tags i18n future staticfiles %}
+{% load pages_tags mezzanine_tags latitude_tags i18n future staticfiles humanize %}
 <head>
 
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -105,7 +105,10 @@
     <div class="panel">
     {% block right_panel %}
     <div class="latitude_map pagination-centered">
-    <img src ="http://maps.googleapis.com/maps/api/staticmap?zoom=10&size=200x200&sensor=false&visual_refresh=true&markers=color:pink|{% latitude_coords -5837038647041021297 %}" alt="find me here!">
+    {% get_latitude_data -5837038647041021297 %}
+    <p class="text-info">Last seen in {{latitude_data.loc_name}}</p>
+    <img src ="http://maps.googleapis.com/maps/api/staticmap?zoom=10&size=200x200&sensor=false&visual_refresh=true&markers=color:pink|{{latitude_data.coords_lat}},{{latitude_data.coords_lon}}" alt="find me here!">
+	<p class="text-info">{{latitude_data.lastseen | naturaltime}}</p>
 	</div>
 	{% endblock %}
     </div>
@@ -118,7 +121,7 @@
 <div class="container">
 {% page_menu "pages/menus/footer.html" %}
 <p>
-    {% trans "Powered by" %}
+    {% trans "Powered by" %}latitude_data
     <a href="http://mezzanine.jupo.org">Mezzanine</a>{% ifinstalled cartridge.shop %},
     <a href="http://cartridge.jupo.org">Cartridge</a>{% endifinstalled %}
     {% trans "and" %}
