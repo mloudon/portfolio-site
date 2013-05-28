@@ -108,7 +108,7 @@
     {% get_latitude_data -5837038647041021297 %}
     <p class="text-info">Last seen in {{latitude_data.loc_name}}</p>
     <img src ="http://maps.googleapis.com/maps/api/staticmap?zoom=10&size=200x200&sensor=false&visual_refresh=true&markers=color:pink|{{latitude_data.coords_lat}},{{latitude_data.coords_lon}}" alt="find me here!">
-	<p class="text-info">{{latitude_data.lastseen | naturalday}}</p>
+	<p class="text-info">{{latitude_data.lastseen | naturalday | title}}</p>
 	</div>
 	{% endblock %}
     </div>
