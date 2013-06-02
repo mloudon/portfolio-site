@@ -1,3 +1,4 @@
+DEBUG = True
 
 DATABASES = {
     "default": {
