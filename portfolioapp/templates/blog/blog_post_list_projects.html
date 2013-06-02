@@ -38,14 +38,6 @@
 
 <p>Projects go here!</p>
 
-
-{% block blog_post_list_pagecontent %}
-{% editable page.richtextpage.content %}
-{{ page.richtextpage.content|richtext_filter|safe }}
-{% endeditable %}
-{% endblock %}
-
-
 {% for blog_post in blog_posts.object_list %}
 {% block blog_post_list_post_title %}
 {% editable blog_post.title %}
