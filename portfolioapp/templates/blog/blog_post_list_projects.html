@@ -26,9 +26,6 @@
 {% block breadcrumb_menu %}
 <<<<<<< HEAD
 =======
-{{ block.super }}
-{% if tag or category or year or month or author %}
->>>>>>> 12fd505511b171e6f812784864b996487f021777
 <li id="breadcrumb-menu-home">{% spaceless %}
 <a href="{% url "home" %}">{% trans "Home" %}</a>
 <span class="divider">/</span>{% endspaceless %}
@@ -37,16 +34,12 @@
 {{ category | title }}
 {% endspaceless %}
 </li>
-<<<<<<< HEAD
-=======
-{% endif %}
->>>>>>> 12fd505511b171e6f812784864b996487f021777
 {% endblock %}
 
 {% block main %}
 
-<<<<<<< HEAD
 <p>Projects go here!</p>
+
 
 {% block blog_post_list_pagecontent %}
 {% editable page.richtextpage.content %}
@@ -54,33 +47,6 @@
 {% endeditable %}
 {% endblock %}
 
-=======
-{% if tag or category or year or month or author %}
-    {% block blog_post_list_filterinfo %}
-    <p>
-    {% if tag %}
-        {% trans "Viewing posts tagged" %} {{ tag }}
-    {% else %}{% if category %}
-        {% trans "Viewing posts for the category" %} {{ category }}
-    {% else %}{% if year or month %}
-        {% trans "Viewing posts from" %} {% if month %}{{ month }}, {% endif %}
-        {{ year }}
-    {% else %}{% if author %}
-        {% trans "Viewing posts by" %}
-        {{ author.get_full_name|default:author.username }}
-    {% endif %}{% endif %}{% endif %}{% endif %}
-    {% endblock %}
-    </p>
-{% else %}
-    {% if page %}
-    {% block blog_post_list_pagecontent %}
-    {% editable page.richtextpage.content %}
-    {{ page.richtextpage.content|richtext_filter|safe }}
-    {% endeditable %}
-    {% endblock %}
-    {% endif %}
-{% endif %}
->>>>>>> 12fd505511b171e6f812784864b996487f021777
 
 {% for blog_post in blog_posts.object_list %}
 {% block blog_post_list_post_title %}
