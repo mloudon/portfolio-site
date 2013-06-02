@@ -72,7 +72,7 @@
 
 # Setting to turn on featured images for blog posts. Defaults to False.
 #
-# BLOG_USE_FEATURED_IMAGE = True
+BLOG_USE_FEATURED_IMAGE = True
 
 # If True, the south application will be automatically added to the
 # INSTALLED_APPS setting.
