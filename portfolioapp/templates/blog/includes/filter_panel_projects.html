@@ -1,0 +1,30 @@
+{% load blog_tags custom_blog_tags keyword_tags i18n future %}
+
+{% block blog_recent_posts_projects %}
+{% blog_recent_posts limit=5 category="projects" as recent_posts_projects %}
+{% if recent_posts_projects %}
+<h3>{% trans "Recent Projects" %}</h3>
+<ul class="unstyled recent-posts">
+{% for recent_post in recent_posts_projects %}
+<li><a href="{{ recent_post.get_absolute_url }}"
+    >{{ recent_post.title }}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
+
+{% block blog_recent_posts %}
+{% blog_recent_posts 5 as recent_posts %}
+{% if recent_posts %}
+<h3>{% trans "Blog Posts" %}</h3>
+<ul class="unstyled recent-posts">
+{% for recent_post in recent_posts %}
+<li><a href="{{ recent_post.get_absolute_url }}"
+    >{{ recent_post.title }}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
+
+
+

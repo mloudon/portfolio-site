@@ -1,0 +1,15 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags %}
+
+{% block main %}{{ block.super }}
+
+{% editable page.richtextpage.content %}
+{{ page.richtextpage.content|richtext_filter|safe }}
+{% endeditable %}
+
+{% endblock %}
+
+{% block right_panel %}
+{% include "blog/includes/filter_panel_projects.html" %}
+{% endblock %}

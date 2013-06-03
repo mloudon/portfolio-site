@@ -79,8 +79,8 @@ class="active">{% spaceless %}{{ category | title }}{% endspaceless %}</li>
 
 {% pagination_for blog_posts %}
 
-{% if settings.COMMENTS_DISQUS_SHORTNAME %}
-{% include "generic/includes/disqus_counts.html" %}
-{% endif %}
+{% endblock %}
 
+{% block right_panel %}
+{% include "blog/includes/filter_panel_projects.html" %}
 {% endblock %}
