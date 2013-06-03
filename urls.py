@@ -5,6 +5,7 @@ from django.contrib import admin
 from mezzanine.core.views import direct_to_template
 
 
+
 admin.autodiscover()
 
 # Add the urlpatterns for any custom Django applications here.
@@ -28,6 +29,9 @@ urlpatterns = patterns("",
     # one out.
 
     url("^$", direct_to_template, {"template": "index.html"}, name="home"),
+    url("^$", direct_to_template, {"template": "index.html"}, name="home"),
+    
+    ("^", include("portfoliosite.urls")),
 
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------
