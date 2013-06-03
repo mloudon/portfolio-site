@@ -21,11 +21,11 @@
 <a href="{% url "home" %}">{% trans "Home" %}</a>
 <span class="divider">/</span>{% endspaceless %}
 </li>
-<li id="breadcrumb-menu-{{ category }}">
-<a href="{{ page.get_absolute_url }}">{{ category }}</a>
+<li id="breadcrumb-menu-projects">{% spaceless %}
+<a href="{{ page.get_absolute_url }}">Projects</a>
 <span class="divider">/</span>
-</li>
 {% endspaceless %}
+</li>
 </li>
 <li class="active">{{ blog_post.title }}</li>
 {% endblock %}

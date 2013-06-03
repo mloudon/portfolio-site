@@ -58,7 +58,7 @@ def get_latitude_data(parser, token):
         return LatitudeNode("")
     
     my_loc = features_str["features"][0]
-    print my_loc
+ 
     coords = my_loc["geometry"]["coordinates"]
     #weirdly, this is [lon, lat] - switch to lat,lon because this is what the static maps API uses
     coords_lat = coords[1]

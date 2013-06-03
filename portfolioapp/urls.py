@@ -1,5 +1,5 @@
 from mezzanine.conf import settings
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, url
 
 # Leading and trailing slahes for urlpatterns based on setup.
 _slashes = (
@@ -10,6 +10,5 @@ _slashes = (
 
 # Custom patterns.
 urlpatterns = patterns("portfolioapp.views",
-    url("^%s(?P<slug>.*)%s$" % _slashes, "blog_post_detail",
-        name="blog_post_detail"),
+    (r"^%s(?P<slug>.*)%s$" % (_slashes), "blog_post_detail"),
 )

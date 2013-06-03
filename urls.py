@@ -3,10 +3,12 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
 from mezzanine.core.views import direct_to_template
-
+from mezzanine.conf import settings
 
 
 admin.autodiscover()
+
+BLOG_SLUG = settings.BLOG_SLUG.rstrip("/")
 
 # Add the urlpatterns for any custom Django applications here.
 # You can also change the ``home`` view to add your own functionality
@@ -31,7 +33,7 @@ urlpatterns = patterns("",
     url("^$", direct_to_template, {"template": "index.html"}, name="home"),
     url("^$", direct_to_template, {"template": "index.html"}, name="home"),
     
-    ("^", include("portfoliosite.urls")),
+
 
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------
@@ -57,6 +59,8 @@ urlpatterns = patterns("",
     # page tree in the admin if it was installed.
 
     # url("^$", "mezzanine.blog.views.blog_post_list", name="home"),
+    
+    ("^%s" % BLOG_SLUG, include("portfolioapp.urls")),
 
     # MEZZANINE'S URLS
     # ----------------
@@ -86,6 +90,9 @@ urlpatterns = patterns("",
     # need to use the ``SITE_PREFIX`` setting as well.
 
     # ("^%s/" % settings.SITE_PREFIX, include("mezzanine.urls"))
+    
+   
+    
 
 )
 
