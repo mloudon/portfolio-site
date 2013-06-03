@@ -60,6 +60,8 @@ urlpatterns = patterns("",
 
     # url("^$", "mezzanine.blog.views.blog_post_list", name="home"),
     
+    
+    
     ("^%s" % BLOG_SLUG, include("portfolioapp.urls")),
 
     # MEZZANINE'S URLS
