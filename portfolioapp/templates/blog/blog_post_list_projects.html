@@ -24,10 +24,8 @@
 <a href="{% url "home" %}">{% trans "Home" %}</a>
 <span class="divider">/</span>{% endspaceless %}
 </li>
-<li id="breadcrumb-menu-projects" class="active">{% spaceless %}
-{{ category | title }}
-{% endspaceless %}
-</li>
+<li id="breadcrumb-menu-{{ category }}"
+class="active">{% spaceless %}{{ category | title }}{% endspaceless %}</li>
 {% endblock %}
 
 {% block main %}
