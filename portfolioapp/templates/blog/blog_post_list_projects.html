@@ -30,8 +30,6 @@ class="active">{% spaceless %}{{ category | title }}{% endspaceless %}</li>
 
 {% block main %}
 
-<p>Projects go here!</p>
-
 {% for blog_post in blog_posts.object_list %}
 {% block blog_post_list_post_title %}
 {% editable blog_post.title %}
