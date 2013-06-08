@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
 <link rel="stylesheet" href="{% static "css/mezzanine.css" %}">
 <link rel="stylesheet" href="{% static "css/bootstrap-responsive.css" %}">
+<link rel="stylesheet" href="{% static "css/custom.css" %}">
 {% if LANGUAGE_BIDI %}
 <link rel="stylesheet" href="{% static "css/rtl.css" %}">
 {% endif %}
@@ -118,10 +119,12 @@
 
 <footer>
 <div class="container">
-<p>
-<strong>email: </strong><a href="mailto:melissa.loudon@gmail.com">melissa.loudon@gmail.com</a>
-<pgp key>email: </strong><a href="http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x0D8E6F958EA82EF8">8EA82EF8</a>
-</p>
+<ul class ="inline contact">
+<li><strong>email: </strong><a href="mailto:melissa.loudon@gmail.com">melissa.loudon@gmail.com</a></li>
+<li><strong>key: </strong><a href="http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x0D8E6F958EA82EF8">8EA82EF8</a>
+</li>
+</ul>
+<br clear="all"/>
 <p>
     {% trans "Powered by" %}
     <a href="http://mezzanine.jupo.org">Mezzanine</a>{% ifinstalled cartridge.shop %},
