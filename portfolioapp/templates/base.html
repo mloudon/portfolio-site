@@ -106,12 +106,9 @@
     {% endnevercache %}
     <div class="panel">
     {% block right_panel %}
-    <div class="latitude_map pagination-centered">
-    {% get_latitude_data -5837038647041021297 %}
-    <p class="text-info">Last seen in {{latitude_data.loc_name}}</p>
-    <img src ="http://maps.googleapis.com/maps/api/staticmap?zoom=10&size=200x200&sensor=false&visual_refresh=true&markers=color:pink|{{latitude_data.coords_lat}},{{latitude_data.coords_lon}}" alt="find me here!">
-	<p class="text-info">{{latitude_data.lastseen | naturalday | title}}</p>
-	</div>
+    {% ifinstalled mezzanine.twitter %}
+    {% include "twitter/tweets.html" %}
+    {% endifinstalled %}
 	{% endblock %}
     </div>
 </div>
@@ -121,7 +118,10 @@
 
 <footer>
 <div class="container">
-{% page_menu "pages/menus/footer.html" %}
+<p>
+<strong>email: </strong><a href="mailto:melissa.loudon@gmail.com">melissa.loudon@gmail.com</a>
+<pgp key>email: </strong><a href="http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x0D8E6F958EA82EF8">8EA82EF8</a>
+</p>
 <p>
     {% trans "Powered by" %}
     <a href="http://mezzanine.jupo.org">Mezzanine</a>{% ifinstalled cartridge.shop %},
