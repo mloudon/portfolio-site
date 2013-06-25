@@ -41,7 +41,7 @@ def get_params(token):
 def get_latitude_json(parser, token):
     userkey = get_params(token)
     json_str = do_latitude_public_badge_request(userkey)
-    return LatitudeNode(json_str)
+    return LatitudeNode("latitude_data",json_str)
 
 @register.tag(name="get_latitude_data")
 def get_latitude_data(parser, token):
@@ -50,12 +50,12 @@ def get_latitude_data(parser, token):
         
     #check if we actually got something back from the request
     if json_str == "":
-        return LatitudeNode("")
+        return LatitudeNode("latitude_data",{})
     
     features_str = json.loads(json_str)
     #check if the response contains a feature
     if ("features" not in features_str or len(features_str["features"])==0):
-        return LatitudeNode("")
+        return LatitudeNode("latitude_data",{})
     
     my_loc = features_str["features"][0]
  

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n latitude_tags humanize %}
+{% load i18n latitude_tags humanize staticfiles %}
 
 {% block meta_title %}{% trans "Home" %}{% endblock %}
 {% block title %}{% endblock %}
@@ -34,8 +34,14 @@ and that sweet little Latitude Public Location Widget that hopefully stops just 
 {% block right_panel %}
     <div class="latitude_map pagination-centered">
     {% get_latitude_data -5837038647041021297 %}
+    {% if latitude_data %}
     <p class="text-info">Last seen in {{latitude_data.loc_name}}</p>
     <img src ="http://maps.googleapis.com/maps/api/staticmap?zoom=10&size=200x200&sensor=false&visual_refresh=true&markers=color:pink|{{latitude_data.coords_lat}},{{latitude_data.coords_lon}}" alt="find me here!">
 	<p class="text-info">{{latitude_data.lastseen | naturalday | title}}</p>
+	{% else %}
+	<p class="text-info">Hmm. The Google Latitude widget hasn't seen Melissa in a while.</p>
+	<img src ="{% static "img/not_found.jpg" %}" alt="perhaps she's here?">
+	
+	{% endif %}
 	</div>
 {% endblock %}
