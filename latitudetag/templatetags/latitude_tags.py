@@ -51,8 +51,11 @@ def get_latitude_data(parser, token):
     #check if we actually got something back from the request
     if json_str == "":
         return LatitudeNode("latitude_data",{})
+    try:
+        features_str = json.loads(json_str)
+    except ValueError: # could not decode the string as json
+        return LatitudeNode("latitude_data",{})
     
-    features_str = json.loads(json_str)
     #check if the response contains a feature
     if ("features" not in features_str or len(features_str["features"])==0):
         return LatitudeNode("latitude_data",{})
