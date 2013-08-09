@@ -17,7 +17,7 @@ def do_latitude_public_badge_request(userkey):
         data["type"] = "json"
         url_values = urllib.urlencode(data)
         full_url = url + "?" + url_values
-        response = urllib2.urlopen(full_url)
+        response = urllib2.urlopen(full_url,2)
         json_str = response.read()
     except URLError, e:
         json_str = ""
