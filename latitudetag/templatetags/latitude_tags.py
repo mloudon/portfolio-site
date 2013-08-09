@@ -10,23 +10,8 @@ logger = logging.getLogger("latitudetag")
 register = template.Library()
 
 def do_latitude_public_badge_request(userkey):
-    try:
-        url = "https://latitude.google.com/latitude/apps/badge/api"
-        data = {}
-        data["user"] = userkey
-        data["type"] = "json"
-        url_values = urllib.urlencode(data)
-        full_url = url + "?" + url_values
-        response = urllib2.urlopen(full_url,2)
-        json_str = response.read()
-    except URLError, e:
-        json_str = ""
-        if hasattr(e, 'reason'):
-            logger.error("latitude public location fetch for user key %s failed; reason was %s" % (userkey, e.reason))
-        elif hasattr(e, 'code'):
-            logger.error("server error in latitude public location fetch for user key %s; error code was %s" % (userkey, e.code))
-    
-    return json_str
+    #sigh, latitude is gone
+    return ""
     
 def get_params(token):
     try:
