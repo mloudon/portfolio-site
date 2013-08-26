@@ -239,6 +239,7 @@ INSTALLED_APPS = (
     "mezzanine.galleries",
     "mezzanine.twitter",
     "latitudetag",
+    "locationlogger",
     #"mezzanine.accounts",
     #"mezzanine.mobile",
 )
