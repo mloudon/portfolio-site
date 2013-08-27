@@ -11,6 +11,10 @@ from decimal import *
 
 import logging
 
+from mezzanine.utils.views import render
+
+from pygeocoder import Geocoder
+
 
 @csrf_exempt
 def update_location(request):
@@ -36,3 +40,24 @@ def update_location(request):
     else:
         logging.error("update location view: not a POST request")
         return HttpResponse(status=400)
+    
+def last_known_loc(request, template="last_known_location.html"):
+    last_loc = Location.objects.latest()
+    city = "unknown location"
+    latlon = (last_loc.lat, last_loc.lon)
+    
+    try:
+        print "Geocoder.reverse_geocode(%s,%s)" % (last_loc.lat, last_loc.lon)
+        address = Geocoder.reverse_geocode(last_loc.lat, last_loc.lon)
+        if (address):
+            city = "%s, %s, %s" % (address[0].locality,address[0].state,address[0].country)
+            
+            latlon = Geocoder.geocode(city).coordinates
+            print latlon
+    except:
+        city = "unknown location"
+    
+    context = {"last_seen_time": last_loc.update_time, "coords_lat": latlon[0], "coords_lon": latlon[1],
+               "last_seen_loc_name": city}
+    return render(request, template, context)
+    

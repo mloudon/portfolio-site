@@ -5,3 +5,6 @@ class Location(models.Model):
     lon = models.DecimalField('longitude',decimal_places=6,max_digits=9)
     accuracy = models.DecimalField('accuracy (meters)',decimal_places=2,max_digits=8)
     update_time = models.DateTimeField("last updated")
+    
+    class Meta:
+        get_latest_by = "update_time"

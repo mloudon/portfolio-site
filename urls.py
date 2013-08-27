@@ -5,6 +5,7 @@ from django.contrib import admin
 from mezzanine.core.views import direct_to_template
 from mezzanine.conf import settings
 
+from locationlogger.views import last_known_loc
 
 admin.autodiscover()
 
@@ -31,8 +32,8 @@ urlpatterns = patterns("",
     # one homepage pattern, so if you use a different one, comment this
     # one out.
 
-    url("^$", direct_to_template, {"template": "index.html"}, name="home"),
-    url("^$", direct_to_template, {"template": "index.html"}, name="home"),
+    #url("^$", direct_to_template, {"template": "index.html"}, name="home"),
+    url("^$", last_known_loc, {"template": "index.html"}, name="home"),
     
 
 
