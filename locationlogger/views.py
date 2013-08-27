@@ -21,7 +21,7 @@ def update_location(request):
                                               accuracy=float(loc_data["acc"]), 
                                               update_time=utc_date)
                 loc.save()
-                logging.debug("saved location: %s" % loc)
+                logging.debug("saved location")
                 return HttpResponse(status=201)
             except:
                 logging.error("exception saving location, error was %s" % sys.exc_info()[0])
