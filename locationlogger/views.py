@@ -13,7 +13,7 @@ import logging
 @csrf_exempt
 def update_location(request):
     if request.method == "POST":
-            logging.debug("Raw Data: %s",request.body)
+            logging.error("Raw Data: %s",request.body)
             try:
                 loc_data = json.loads(request.body)
                 utc_date = datetime.datetime.fromtimestamp(float(loc_data["timestamp"])//1000.0).replace(tzinfo=utc)
