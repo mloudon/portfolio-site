@@ -12,8 +12,8 @@ import logging
 
 @csrf_exempt
 def update_location(request):
-    if request.method == 'POST':
-            logging.debug('Raw Data: "%s"' % request.body)
+    if request.method == "POST":
+            logging.debug("Raw Data: %s",request.body)
             try:
                 loc_data = json.loads(request.body)
                 utc_date = datetime.datetime.fromtimestamp(float(loc_data["timestamp"])//1000.0).replace(tzinfo=utc)
@@ -21,10 +21,10 @@ def update_location(request):
                                               accuracy=float(loc_data["acc"]), 
                                               update_time=utc_date)
                 loc.save()
-                logging.debug("saved location")
+                logging.debug("saved location %s", loc)
                 return HttpResponse(status=201)
             except:
-                logging.error("exception saving location, error was %s" % sys.exc_info()[0])
+                logging.error("exception saving location, error was %s", sys.exc_info()[0])
                 return HttpResponse(status=400)
     else:
         logging.error("update location view: not a POST request")
