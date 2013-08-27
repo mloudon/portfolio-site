@@ -13,9 +13,6 @@ import logging
 
 from mezzanine.utils.views import render
 
-from pygeocoder import Geocoder
-
-
 @csrf_exempt
 def update_location(request):
     if request.method == "POST":
@@ -43,21 +40,8 @@ def update_location(request):
     
 def last_known_loc(request, template="last_known_location.html"):
     last_loc = Location.objects.latest()
-    city = "unknown location"
-    latlon = (last_loc.lat, last_loc.lon)
     
-    try:
-        print "Geocoder.reverse_geocode(%s,%s)" % (last_loc.lat, last_loc.lon)
-        address = Geocoder.reverse_geocode(last_loc.lat, last_loc.lon)
-        if (address):
-            city = "%s, %s, %s" % (address[0].locality,address[0].state,address[0].country)
-            
-            latlon = Geocoder.geocode(city).coordinates
-            print latlon
-    except:
-        city = "unknown location"
-    
-    context = {"last_seen_time": last_loc.update_time, "coords_lat": latlon[0], "coords_lon": latlon[1],
-               "last_seen_loc_name": city}
+    context = {"last_seen_time": last_loc.update_time, "coords_lat": last_loc.city_lat, "coords_lon": last_loc.city_lon,
+               "last_seen_loc_name": last_loc.city_str}
     return render(request, template, context)
     
