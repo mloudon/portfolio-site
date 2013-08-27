@@ -26,7 +26,7 @@ def update_location(request):
                 logging.debug("saved location")
                 return HttpResponse(status=201)
             except TypeError as e:
-                logging.error("typeerror saving location, error was %s", e.strerror)
+                logging.error("typeerror saving location, error was %s", e)
                 return HttpResponse(status=400)
             except:
                 logging.error("exception saving location, error was %s", sys.exc_info()[0])
