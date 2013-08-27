@@ -7,6 +7,8 @@ from locationlogger.models import Location
 import datetime
 from django.utils.timezone import utc
 
+from decimal import *
+
 import logging
 
 
@@ -19,8 +21,8 @@ def update_location(request):
                 logging.debug("json loaded")
                 utc_date = datetime.datetime.fromtimestamp(float(loc_data["timestamp"])//1000.0).replace(tzinfo=utc)
                 logging.debug("utc date %s", utc_date)
-                loc = Location.objects.create(lat=float(loc_data["lat"]), lon=float(loc_data["lon"]), 
-                                              accuracy=float(loc_data["acc"]), 
+                loc = Location.objects.create(lat=Decimal(loc_data["lat"]), lon=Decimal(loc_data["lon"]), 
+                                              accuracy=Decimal(loc_data["acc"]), 
                                               update_time=utc_date)
                 loc.save()
                 logging.debug("saved location")
