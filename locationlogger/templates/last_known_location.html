@@ -5,9 +5,10 @@
 <body>
 <div class="latitude_map pagination-centered">
 
-    <p class="text-info">Last seen in {{last_seen_loc_name}}</p>
-    <img src ="http://maps.googleapis.com/maps/api/staticmap?zoom=10&size=200x200&sensor=false&visual_refresh=true&markers=color:pink|{{coords_lat}},{{coords_lon}}" alt="find me here!">
-	<p class="text-info">{{last_seen_time | naturalday | title}}</p>
+    <p class="text-info">Last seen in {{last_seen_loc_name}} 
+    (<a href="https://maps.google.com/maps?z=12&q=loc:{{coords_lat}}+{{coords_lon}}"> 
+    	google map</a>)</p>
+	<p class="text-info">{{last_seen_time | naturaltime | title}}</p>
 	</div>
 </body>
 </html>

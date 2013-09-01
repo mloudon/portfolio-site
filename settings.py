@@ -78,6 +78,10 @@ BLOG_USE_FEATURED_IMAGE = True
 # INSTALLED_APPS setting.
 USE_SOUTH = True
 
+ACCOUNTS_VERIFICATION_REQUIRED = True
+
+ACCOUNTS_APPROVAL_REQUIRED = True
+
 
 ########################
 # MAIN DJANGO SETTINGS #
@@ -87,7 +91,7 @@ USE_SOUTH = True
 # In the format (('Full Name', 'email@example.com'),
 #                ('Full Name', 'anotheremail@example.com'))
 ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
+    ('Melissa Loudon', 'melissa.loudon@gmail.com'),
 )
 MANAGERS = ADMINS
 
@@ -240,7 +244,7 @@ INSTALLED_APPS = (
     "mezzanine.twitter",
     "latitudetag",
     "locationlogger",
-    #"mezzanine.accounts",
+    "mezzanine.accounts",
     #"mezzanine.mobile",
 )
 
