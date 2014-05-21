@@ -1,6 +1,7 @@
 from django.db import models
 from pygeocoder import Geocoder
 from decimal import *
+from settings import SIGNING_TOKEN
 
 
 def float_to_decimal(f):
@@ -14,6 +15,17 @@ def float_to_decimal(f):
         ctx.prec *= 2
         result = ctx.divide(numerator, denominator)
     return result
+
+def authenticate(data):
+    import base64
+    import hashlib
+    import hmac
+
+    untrusted_sig = data.get('signature', '').strip()
+    message = '%(user)s|%(timestamp)d|%(lat).5f|%(lon).5f|%(acc).1f' % data
+    sig = base64.b64encode(hmac.new(settings.SIGNING_TOKEN, message, hashlib.sha1).digest())
+
+    return sig == untrusted_sig
 
 class Location(models.Model):
     lat = models.DecimalField('latitude',decimal_places=6,max_digits=8)

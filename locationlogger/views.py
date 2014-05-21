@@ -21,7 +21,7 @@ def update_location(request):
             try:
                 loc_data = json.loads(request.body)
                 logging.debug("json loaded")
-                utc_date = datetime.datetime.fromtimestamp(float(loc_data["timestamp"])//1000.0)
+                utc_date = datetime.datetime.fromtimestamp(float(loc_data["timestamp"]))
                 logging.debug("utc date %s", utc_date)
                 loc = Location.objects.create(lat=Decimal(loc_data["lat"]), lon=Decimal(loc_data["lon"]), 
                                               accuracy=Decimal(loc_data["acc"]), 

@@ -1,5 +1,7 @@
 DEBUG = False
 
+SIGNING_TOKEN = "q90q7mpuh16w5r5q89tvf3slq"
+
 DATABASES = {
     "default": {
         # Ends with "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
