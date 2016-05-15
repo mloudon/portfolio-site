@@ -58,10 +58,6 @@
     </a>
     {% if settings.SITE_TITLE %}<a class="brand" href="/">{{ settings.SITE_TITLE }}</a>{% endif %}
     {% if settings.SITE_TAGLINE %}<p class="navbar-text">{{ settings.SITE_TAGLINE }}</p>{% endif %}
-    <div class="nav-collapse">
-        {% search_form "all" %}
-        {% page_menu "pages/menus/dropdown.html" %}
-    </div>
 </div>
 </div>
 </div>
@@ -99,16 +95,6 @@
 
 <div class="span7 middle">
     {% block main %}{% endblock %}
-</div>
-
-<div class="span3 right">
-    <div class="panel">
-    {% block right_panel %}
-    {% ifinstalled mezzanine.twitter %}
-    {% include "twitter/tweets.html" %}
-    {% endifinstalled %}
-	{% endblock %}
-    </div>
 </div>
 
 </div>
