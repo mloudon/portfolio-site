@@ -1,2 +1,4 @@
 Mezzanine==1.4.6
 pygeocoder==1.2.1
+appdirs==1.4.3
+packaging==16.8
